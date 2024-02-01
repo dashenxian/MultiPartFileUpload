@@ -24,6 +24,7 @@ using XSX.MultiPartUploadFile.Options;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Hosting;
 using System.Text.Json;
+using Microsoft.Extensions.Primitives;
 
 namespace XSX.MultiPartUploadFile.Middlewares
 {
@@ -153,7 +154,7 @@ namespace XSX.MultiPartUploadFile.Middlewares
                     await using var fileStream = new FileStream(fileFullPath, FileMode.Open, FileAccess.Read);
                     var formFile = new FormFile(fileStream, 0, fileStream.Length, name, fileName);
                     newFormFileCollection.Add(formFile);
-                    var newFormCollection = formCollection.ToDictionary();
+                    var newFormCollection = new Dictionary<string, StringValues>(formCollection);//formCollection.ToDictionary(null);
                     context.Request.Form = new FormCollection(newFormCollection, newFormFileCollection);
                     context.Response.ContentType = null;
                     context.Response.Headers.Clear();

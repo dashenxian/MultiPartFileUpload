@@ -9,7 +9,7 @@ namespace XSX.MultiPartUploadFile.Dto
         /// 文件内容
         /// </summary>
         [Required]
-        public required IFormFile File { get; set; }
+        public IFormFile File { get; set; }
         /// <summary>
         /// 当前分段在全文件的开始字节位置
         /// </summary>
@@ -24,11 +24,11 @@ namespace XSX.MultiPartUploadFile.Dto
         /// 文件名称
         /// </summary>
         [Required]
-        public required string FileName { get; set; }
+        public string FileName { get; set; }
         /// <summary>
         /// 标识码，同一个文件多个分段应该一样，请使用随机值，避免与其他文件相同造成错误合并到其他文件的分段
         /// </summary>
         [Required]
-        public required string Id { get; set; }
+        public string Id { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace XSX.MultiPartUploadFile.Middlewares
 {
     public static class AddMultiPartUploadFileExtensions
     {
-        public static IHostApplicationBuilder AddMultiPartUploadFile(this IHostApplicationBuilder builder,IMvcBuilder mvcBuilder)
+        public static WebApplicationBuilder AddMultiPartUploadFile(this WebApplicationBuilder builder,IMvcBuilder mvcBuilder)
         {
             mvcBuilder.AddMultiPartFileUploadController();
             builder.AddMultiPartUploadFileConfig();

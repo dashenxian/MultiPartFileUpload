@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using XSX.MultiPartUploadFile.Options;
@@ -15,7 +16,7 @@ namespace XSX.MultiPartUploadFile.Middlewares
         /// 从配置节点[MultiPartUploadFileOption]读取文件上传配置
         /// </summary>
         /// <param name="builder"></param>
-        public static void AddMultiPartUploadFileConfig(this IHostApplicationBuilder builder)
+        public static void AddMultiPartUploadFileConfig(this WebApplicationBuilder builder)
         {
             builder.Services.Configure<MultiPartUploadFileOptions>(
                 builder.Configuration.GetSection(MultiPartUploadFileOptions.MultiPartUploadFile));
@@ -25,7 +26,7 @@ namespace XSX.MultiPartUploadFile.Middlewares
         /// </summary>
         /// <param name="builder"></param>
         /// <param name="action"></param>
-        public static void AddMultiPartUploadFileConfig(this IHostApplicationBuilder builder,Action<MultiPartUploadFileOptions> action)
+        public static void AddMultiPartUploadFileConfig(this WebApplicationBuilder builder,Action<MultiPartUploadFileOptions> action)
         {
             builder.Services.Configure<MultiPartUploadFileOptions>(Microsoft.Extensions.Options.Options.DefaultName, action);
         }
