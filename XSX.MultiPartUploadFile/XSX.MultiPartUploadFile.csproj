@@ -5,7 +5,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
-		<PackageId>6084F412-52C6-4517-BCD5-F67E352A3A56</PackageId>
+		<PackageId>XSX.MultiPartUploadFile</PackageId>
 		<Authors>XSX</Authors>
 		<Description>asp.net core分段上传文件库</Description>
 		<PackageProjectUrl>https://github.com/dashenxian/MultiPartFileUpload</PackageProjectUrl>
