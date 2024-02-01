@@ -4,7 +4,15 @@
 		<TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+
+		<PackageId>6084F412-52C6-4517-BCD5-F67E352A3A56</PackageId>
+		<Authors>XSX</Authors>
+		<Description>asp.net core分段上传文件库</Description>
+		<PackageProjectUrl>https://github.com/dashenxian/MultiPartFileUpload</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/dashenxian/MultiPartFileUpload</RepositoryUrl>
+		<PackageTags>MultiPart;UploadFile;MultiPartUploadFile</PackageTags>
 	</PropertyGroup>
+
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
