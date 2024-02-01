@@ -11,8 +11,11 @@
 		<PackageProjectUrl>https://github.com/dashenxian/MultiPartFileUpload</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/dashenxian/MultiPartFileUpload</RepositoryUrl>
 		<PackageTags>MultiPart;UploadFile;MultiPartUploadFile</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
-
+	<ItemGroup>
+		<None Include="../README.md" Pack="true" PackagePath="/"/>
+	</ItemGroup>
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
