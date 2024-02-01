@@ -1,0 +1,63 @@
+name: XSX.MultiPartUploadFile
+
+on:   
+  push:
+    tags: v*
+  create:
+  workflow_dispatch: # 手动触发
+
+jobs:
+  test:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest    
+    strategy:
+      matrix:
+        dotnet-version: [ '6.0.x' ]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: ${{ matrix.dotnet-version }}
+    - name: Test
+      run: dotnet test --configuration Release
+  
+  build:
+    needs: test
+    name: Build Project
+    runs-on: ubuntu-latest    
+    strategy:
+      matrix:
+        dotnet-version: [ '6.0.x' ]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: ${{ matrix.dotnet-version }}
+    - name: Build
+      run: dotnet build --configuration Release
+  
+  publish:
+    needs: [test, build]
+    name: Publish Project to Nuget
+    runs-on: ubuntu-latest    
+    strategy:
+      matrix:
+        dotnet-version: [ '6.0.x' ]
+    steps:
+    - uses: actions/checkout@v3
+    - run: git fetch --prune --unshallow
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: ${{ matrix.dotnet-version }}
+    - name: Publish
+      run: |       
+        version=`git describe --tags`
+        dotnet build --configuration Release
+        dotnet pack XSX.MultiPartUploadFile --configuration release -p:PackageVersion=$version 
+        dotnet nuget push XSX.MultiPartUploadFile/bin/release/XSX.MultiPartUploadFile.*.nupkg -k ${APIKEY} -s https://api.nuget.org/v3/index.json
+
+      env:
+        APIKEY: ${{ secrets.nuget_XSX_MultiPartUploadFile }}
